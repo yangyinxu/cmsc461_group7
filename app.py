@@ -158,7 +158,6 @@ def main():
                     if (myStmt != "q" and myStmt != "quit" and myStmt != "exit"):
                         cur.execute(myStmt)
                         data = cur.fetchall()
-                        print("The results are: ")
                         for rec in data:
                             for field in rec:
                                 print(field,"\t",end='')
