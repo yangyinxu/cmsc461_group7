@@ -9,6 +9,7 @@ from sys import platform
 
 con = None
 
+#prints the main menu
 def main_menu():
     print("------------------------------")
     print("Main Menu")
@@ -18,6 +19,7 @@ def main_menu():
     print("4. Quit")
     print("------------------------------")
 
+#prints the table selection menu
 def table_selection_menu():
     print("------------------------------")
     print("Table Selection Menu")
@@ -28,6 +30,7 @@ def table_selection_menu():
     print("5. customer_agency")
     print("------------------------------")
 
+#opens a csv file with given filename and loading the records into the office table.
 def load_office(con, cur, filename):
     with open(filename, 'r') as office:
         counter = 0
@@ -37,6 +40,7 @@ def load_office(con, cur, filename):
             counter += 1
     print("{} records has been added to the office table.".format(counter))
 
+#opens a csv file with given filename and loading the records into the managed table.
 def load_managed(con, cur, filename):
     with open(filename, 'r') as managed:
         counter = 0
@@ -46,6 +50,7 @@ def load_managed(con, cur, filename):
             counter += 1
     print("{} records has been added to managed table.".format(counter))
 
+#opens a csv file with given filename and loading the records into the rental agreement table.
 def load_rental_agreement(con, cur, filename):
     with open(filename, 'r') as rental_agreement:
         counter = 0
@@ -55,6 +60,7 @@ def load_rental_agreement(con, cur, filename):
             counter += 1
     print("{} records has been added to the rental_agreement table.".format(counter))
 
+#opens a csv file with given filename and loading the records into the party table.
 def load_party(con, cur, filename):
     with open(filename, 'r') as party:
         counter = 0
@@ -64,6 +70,7 @@ def load_party(con, cur, filename):
             counter += 1
     print("{} records has been added to the party table".format(counter))
 
+#opens a csv file with given filename and loading the records into the customer agency table.
 def load_customer_agency(con, cur, filename):
     with open(filename, 'r') as customer_agency:
         counter = 0
@@ -73,6 +80,7 @@ def load_customer_agency(con, cur, filename):
             counter += 1
     print("{} records has been added to the customer_agency table".format(counter))
 
+#erase the records from all existing tables
 def erase_tables():
     print("erasing tables")
 
@@ -87,6 +95,7 @@ def erase_tables():
     con.commit()
     con.close()
 
+#main function
 def main():
     continue_to_run = True
     user_input = 0
@@ -144,7 +153,7 @@ def main():
                 print("Enter 'q', 'quit' or 'exit' to QUIT from the terminal")
 
                 while (myStmt != "q" and myStmt != "quit" and myStmt != "exit"):
-                    #ask for usr input
+                    #ask for user input
                     myStmt = input(">>")
                     if (myStmt != "q" and myStmt != "quit" and myStmt != "exit"):
                         cur.execute(myStmt)
@@ -175,6 +184,6 @@ def main():
             print("Quitting from the application")
             continue_to_run = False
             sys.exit(0)
-            
+
 if __name__ == "__main__":
     main()
