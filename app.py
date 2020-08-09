@@ -82,10 +82,14 @@ def load_customer_agency(con, cur, filename):
 
 #erase the records from all existing tables
 def erase_tables():
-    print("erasing tables")
+    print("Erasing tables")
+
+    database_name = input("What is the name of the db file?")
+    while(os.path.exists(database_name) == False):
+        database_name = input("Invalid input, please try another filename: ")
 
     #connect to the database
-    con = lite.connect("soap.db")
+    con = lite.connect(database_name)
     cur = con.cursor()
     cur.execute("DELETE FROM office")
     cur.execute("DELETE FROM managed")
@@ -99,6 +103,7 @@ def erase_tables():
 def main():
     continue_to_run = True
     user_input = 0
+
     while continue_to_run:
         main_menu()
         user_input = input("What do you wish to do? ")
@@ -118,8 +123,12 @@ def main():
                 table_selection_menu()
                 table_choice = input("Invalid input, please try another table: ")
 
+            database_name = input("What is the name of the db file?")
+            while(os.path.exists(database_name) == False):
+                database_name = input("Invalid input, please try another filename: ")
+
             #connect to the database
-            con = lite.connect("soap.db")
+            con = lite.connect(database_name)
             cur = con.cursor()
 
             if(table_choice == '1'):
@@ -138,8 +147,11 @@ def main():
 
         if(user_input == '2'):
             try:
+                database_name = input("What is the name of the db file?")
+                while(os.path.exists(database_name) == False):
+                    database_name = input("Invalid input, please try another filename: ")
                 #connect to the database
-                con = lite.connect("soap.db")
+                con = lite.connect(database_name)
                 cur = con.cursor()
                 myStmt = "go"
                 
